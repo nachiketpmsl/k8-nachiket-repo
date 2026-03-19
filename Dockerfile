@@ -1,9 +1,15 @@
-# FROM openjdk:17-jdk-slim-buster
+# Use a valid Java 11 image
 FROM openjdk:11-jre-slim
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
 
-RUN mkdir destination-dir-for-add
-ADD sample.tar.gz /destination-dir-for-add
+# Set the working directory
+WORKDIR /app
 
-ENTRYPOINT ["java","-jar","/app.jar"]
+# Copy the jar file from the build/libs folder
+# Note: Ensure the filename 'jhooq-docker-demo.jar' matches your actual jar name
+COPY build/libs/*.jar app.jar
+
+# Expose the port your Spring Boot app runs on
+EXPOSE 8080
+
+# Command to run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]

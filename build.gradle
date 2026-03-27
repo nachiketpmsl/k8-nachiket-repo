@@ -13,7 +13,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
-	compile.exclude module: "spring-boot-starter-tomcat"
+	// compile.exclude module: "spring-boot-starter-tomcat"
 }
 
 repositories {
@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web') {
-    exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    	exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 	}
 	implementation 'org.springframework.boot:spring-boot-starter-jetty'
 	compileOnly 'org.projectlombok:lombok:1.18.30'

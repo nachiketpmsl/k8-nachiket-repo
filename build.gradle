@@ -22,14 +22,23 @@ repositories {
 }
 
 dependencies {
-    // ... keep your existing web, jetty, and lombok implementation lines ...
+    // 1. This pulls in RestController, GetMapping, and the Web support
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+    // 2. Since you're excluding Tomcat for Jetty, do it like this:
+    implementation('org.springframework.boot:spring-boot-starter-jetty')
+    
+    // 3. Keep your Lombok for JDK 21 compatibility
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
-    // 1. ADD THIS: This provides JUnit 5 and Spring Boot testing tools
+    // 4. Fix the test issues from earlier
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
 
-    // 2. Keep these so Lombok works in your test classes
-    testCompileOnly 'org.projectlombok:lombok:1.18.30'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+configurations {
+    // Globally exclude tomcat to avoid conflicts with Jetty
+    implementation.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 }
 
 // 3. DO NOT REMOVE THIS: This tells Gradle to use the JUnit 5 engine

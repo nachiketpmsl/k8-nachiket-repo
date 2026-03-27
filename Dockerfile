@@ -7,7 +7,9 @@ WORKDIR /app
 
 # Copy the jar file from the build/libs folder
 # Note: Ensure the filename 'jhooq-docker-demo.jar' matches your actual jar name
-COPY build/libs/*.jar app.jar
+# COPY build/libs/*.jar app.jar
+# Change Step 3/5 to this:
+COPY build/libs/*-SNAPSHOT.jar app.jar
 
 # Expose the port your Spring Boot app runs on
 EXPOSE 8080

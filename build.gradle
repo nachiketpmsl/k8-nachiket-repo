@@ -16,7 +16,8 @@ configurations {
 }
 
 repositories {
-	mavenCentral()
+	// mavenCentral()
+	apply plugin: 'maven'
 }
 
 dependencies {
